@@ -57,8 +57,10 @@ task codeBuild {
     doLast {
         println "Task: Building triggers..."
         for (String path : ballerinaPackages) {
-            exec {
-                commandLine 'sh', '-c', "${ballerinaDistributionPath}/bin/bal pack ${path}"
+            if (path.contains("gmail")) {
+                exec {
+                    commandLine 'sh', '-c', "${ballerinaDistributionPath}/bin/bal pack ${path}"
+                }
             }
         }
 
